@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileTreeContainer = document.getElementById('file-tree');
     const contentContainer = document.getElementById('content');
 
+    // 页面加载时默认加载 index.md
+    loadFileContent('index.md');
+
     // 获取并构建文件目录
     fetch('file-list.json')
         .then(response => {
