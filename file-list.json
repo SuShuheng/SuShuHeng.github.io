@@ -1,0 +1,13 @@
+[
+  {
+    "type": "folder",
+    "name": "posts",
+    "children": [
+      {
+        "type": "file",
+        "name": "welcome.md",
+        "path": "posts/welcome.md"
+      }
+    ]
+  }
+]
