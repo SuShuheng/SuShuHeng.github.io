@@ -52,8 +52,38 @@ body {
     color: #007bff;
 }
 
-.folder {
+.folder-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+}
+
+.folder-name {
     font-weight: bold;
+    margin-left: 5px;
+}
+
+.caret {
+    margin-right: 5px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #333; /* Right-pointing triangle */
+    transition: transform 0.2s ease-in-out;
+}
+
+.caret-down {
+    transform: rotate(90deg); /* Down-pointing triangle */
+}
+
+.nested {
+    display: none; /* Hide all nested lists by default */
+}
+
+.active {
+    display: block; /* Show the nested list when active */
 }
 /* Markdown content styling */
 .content h1, .content h2, .content h3, .content h4 {

@@ -13,13 +13,29 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const treeHtml = buildTree(data);
             fileTreeContainer.innerHTML = treeHtml;
-            // 给文件链接添加点击事件
+            // 给文件和文件夹添加点击事件
             addClickListeners();
+            addFolderToggleListeners();
         })
         .catch(error => {
             console.error('无法加载文件列表:', error);
             fileTreeContainer.innerHTML = '<p>错误：无法加载文件目录。</p>';
         });
+
+    function addFolderToggleListeners() {
+        const folderHeaders = document.querySelectorAll('.folder-header');
+        folderHeaders.forEach(header => {
+            header.addEventListener('click', (event) => {
+                const caret = header.querySelector('.caret');
+                const nestedUl = header.nextElementSibling; // 获取紧邻的兄弟元素，即 ul.nested
+
+                if (nestedUl && nestedUl.classList.contains('nested')) {
+                    nestedUl.classList.toggle('active');
+                    caret.classList.toggle('caret-down');
+                }
+            });
+        });
+    }
 
     /**
      * 递归构建文件目录的 HTML
@@ -30,11 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '<ul>';
         nodes.forEach(node => {
             if (node.type === 'folder') {
-                html += `<li><span class="folder">${node.name}</span>`;
+                html += `<li>
+                            <div class="folder-header">
+                                <span class="caret"></span>
+                                <span class="folder-name">${node.name}</span>
+                            </div>`;
                 if (node.children && node.children.length > 0) {
-                    html += buildTree(node.children);
+                    html += `<ul class="nested">` + buildTree(node.children).slice(4, -5) + `</ul>`;
                 }
-                html += '</li>';
+                html += `</li>`;
             } else if (node.type === 'file') {
                 html += `<li><a href="#" data-path="${node.path}">${node.name}</a></li>`;
             }
