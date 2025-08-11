@@ -9,5 +9,21 @@
         "path": "posts/welcome.md"
       }
     ]
+  },
+  {
+    "type": "folder",
+    "name": "ComfyUI",
+    "children": [
+      {
+        "type": "file",
+        "name": "flux-kontext 教程.md",
+        "path": "ComfyUI/flux-kontext 教程.md"
+      },
+      {
+        "type": "file",
+        "name": "Wan2.2-5B 教程.md",
+        "path": "ComfyUI/Wan2.2-5B 教程.md"
+      }
+    ]
   }
 ]
