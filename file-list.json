@@ -29,6 +29,17 @@
             "path": "WSL2/Ubuntu可视化界面/Ubuntu.md"
           }
         ]
+      },
+      {
+        "type": "folder",
+        "name": "Ubuntu安装",
+        "children": [
+          {
+            "type": "file",
+            "name": "启用 WSL 并安装 Ubuntu.md",
+            "path": "WSL2/Ubuntu安装/启用 WSL 并安装 Ubuntu.md"
+          }
+        ]
       }
     ]
   }
