@@ -106,6 +106,15 @@ body {
     color: #333;
     font-size: 1.2em;
     transition: transform 0.3s ease;
+    position: fixed; /* Make it fixed to viewport */
+    top: 60px; /* Adjust based on topbar height */
+    left: 10px; /* Position it on the left */
+    z-index: 1001; /* Ensure it's above other content */
+    background-color: #f8f8f8; /* Match sidebar background */
+    border-radius: 50%; /* Make it round */
+    width: 30px; /* Set a fixed width */
+    height: 30px; /* Set a fixed height */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
 .sidebar-toggle-button:hover {
@@ -287,7 +296,8 @@ body {
 .sidebar.collapsed {
     width: 0;
     min-width: 0;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
     overflow: hidden;
 }
 
@@ -300,8 +310,9 @@ body {
     transform: rotate(-45deg); /* Arrow points right when collapsed */
 }
 
-.sidebar.collapsed .sidebar-toggle-button .arrow.right {
-    transform: rotate(135deg); /* Arrow points left when expanded */
+/* Ensure the button is visible even when sidebar is collapsed */
+.sidebar.collapsed + .content {
+    margin-left: 50px; /* Adjust content margin to make space for the button */
 }
 
 .content.expanded {

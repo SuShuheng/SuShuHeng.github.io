@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentContainer = document.getElementById('content');
     const homeButton = document.getElementById('homeButton');
     const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarToggle = document.getElementById('sidebarToggle'); // 按钮现在在body的直接子元素
 
     // 页面加载时默认加载 index.md
     loadFileContent('index.md');
