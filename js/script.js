@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentContainer = document.getElementById('content');
     const homeButton = document.getElementById('homeButton');
     const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle'); // 按钮现在在body的直接子元素
+    const sidebarToggle = document.getElementById('sidebarToggle');
 
     // 页面加载时默认加载 index.md
     loadFileContent('index.md');
@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
         contentContainer.classList.toggle('expanded');
+
+        const arrow = sidebarToggle.querySelector('.arrow');
+        if (sidebar.classList.contains('collapsed')) {
+            arrow.classList.remove('left');
+            arrow.classList.add('right');
+        } else {
+            arrow.classList.remove('right');
+            arrow.classList.add('left');
+        }
     });
 
     /**

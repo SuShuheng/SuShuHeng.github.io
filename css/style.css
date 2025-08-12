@@ -306,9 +306,6 @@ body {
     display: none;
 }
 
-.sidebar.collapsed .sidebar-toggle-button .arrow.left {
-    transform: rotate(-45deg); /* Arrow points right when collapsed */
-}
 
 /* Ensure the button is visible even when sidebar is collapsed */
 .sidebar.collapsed + .content {
