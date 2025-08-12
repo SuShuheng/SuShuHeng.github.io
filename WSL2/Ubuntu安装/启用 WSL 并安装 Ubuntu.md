@@ -16,7 +16,7 @@
    - 重启电脑。
 
 2. **安装 Ubuntu**：
-   - 打开 Microsoft Store，搜索并安装 **Ubuntu**（推荐 22.04 LTS）。
+   - 打开 Microsoft Store，搜索并安装 **Ubuntu**（推荐 24.04 LTS）。
    - 首次启动时会要求设置用户名和密码。
 
 ---
@@ -37,7 +37,7 @@
 ### **步骤 3：安装 Anaconda**
 1. **下载安装脚本**：
    ```bash
-   wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
+   wget https://repo.anaconda.com/archive/Anaconda3-2025.05-1-Linux-x86_64.sh
    ```
    （替换为[官网](https://www.anaconda.com/download)最新链接）
 
@@ -61,7 +61,41 @@
 
 ---
 
-### **步骤 4：创建虚拟环境**
+### **步骤 4：Nvidia CUDA Toolkit**
+
+1. **去官网寻找windows 对应的CUDA版本的CUDA Toolkit 并获取安装命令**：
+
+   ```bash
+   wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
+   sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
+   wget https://developer.download.nvidia.com/compute/cuda/12.9.0/local_installers/cuda-repo-ubuntu2404-12-9-local_12.9.0-575.51.03-1_amd64.deb
+   sudo dpkg -i cuda-repo-ubuntu2404-12-9-local_12.9.0-575.51.03-1_amd64.deb
+   sudo cp /var/cuda-repo-ubuntu2404-12-9-local/cuda-*-keyring.gpg /usr/share/keyrings/
+   sudo apt-get update
+   sudo apt-get -y install cuda-toolkit-12-9
+   ```
+
+2. **安装cuDNN**：
+
+   ```bash
+   wget https://developer.download.nvidia.com/compute/cudnn/9.12.0/local_installers/cudnn-local-repo-ubuntu2404-9.12.0_1.0-1_amd64.deb
+   sudo dpkg -i cudnn-local-repo-ubuntu2404-9.12.0_1.0-1_amd64.deb
+   sudo cp /var/cudnn-local-repo-ubuntu2404-9.12.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+   sudo apt-get update
+   
+   # 对于 CUDA12
+   sudo apt-get -y install cudnn9-cuda-12
+   
+   # 对于 CUDA13
+   sudo apt-get -y install cudnn9-cuda-13
+   ```
+
+---
+
+### 
+
+### **步骤 5：创建虚拟环境**
+
 1. **新建环境（例如 `ml_dl`）**：
    ```bash
    conda create -n ml_dl python=3.9 -y
@@ -74,14 +108,14 @@
 
 ---
 
-### **步骤 5：安装机器学习库**
+### **步骤 6：安装机器学习库**
 ```bash
 conda install -y numpy pandas scikit-learn matplotlib seaborn jupyter
 ```
 
 ---
 
-### **步骤 6：安装深度学习框架**
+### **步骤 7：安装深度学习框架**
 #### **TensorFlow**
 - **CPU 版本**：
   ```bash
@@ -107,7 +141,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 
 ---
 
-### **步骤 7：安装其他工具（可选）**
+### **步骤 8：安装其他工具（可选）**
 1. **Jupyter Lab**：
    ```bash
    conda install -y jupyterlab
@@ -127,7 +161,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 
 ---
 
-### **步骤 8：验证环境**
+### **步骤 9：验证环境**
 1. **运行测试代码**：
    ```python
    import tensorflow as tf
