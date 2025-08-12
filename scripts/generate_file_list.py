@@ -8,9 +8,9 @@ def build_tree(path):
     """
     tree = []
     # 忽略的目录
-    excluded_dirs = ['.git', 'scripts', '.vscode', '__pycache__']
+    excluded_dirs = ['.git', 'scripts', '.vscode', '__pycache__','src', 'js', 'css'] # 新增排除 src, js, css 目录
     # 忽略的文件
-    excluded_files = ['readme.md']
+    excluded_files = ['readme.md', 'index.md', 'structure.md'] # 新增排除 index.md 和 Structure.md
 
     try:
         items = sorted(os.listdir(path))

@@ -1,28 +1,34 @@
 [
   {
     "type": "folder",
-    "name": "posts",
+    "name": "ComfyUI",
     "children": [
       {
         "type": "file",
-        "name": "welcome.md",
-        "path": "posts/welcome.md"
+        "name": "Wan2.2-5B 教程.md",
+        "path": "ComfyUI/Wan2.2-5B 教程.md"
+      },
+      {
+        "type": "file",
+        "name": "flux-kontext 教程.md",
+        "path": "ComfyUI/flux-kontext 教程.md"
       }
     ]
   },
   {
     "type": "folder",
-    "name": "ComfyUI",
+    "name": "WSL2",
     "children": [
       {
-        "type": "file",
-        "name": "flux-kontext 教程.md",
-        "path": "ComfyUI/flux-kontext 教程.md"
-      },
-      {
-        "type": "file",
-        "name": "Wan2.2-5B 教程.md",
-        "path": "ComfyUI/Wan2.2-5B 教程.md"
+        "type": "folder",
+        "name": "Ubuntu可视化界面",
+        "children": [
+          {
+            "type": "file",
+            "name": "Ubuntu.md",
+            "path": "WSL2/Ubuntu可视化界面/Ubuntu.md"
+          }
+        ]
       }
     ]
   }
