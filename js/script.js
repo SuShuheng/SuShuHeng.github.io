@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileTreeContainer = document.getElementById('file-tree');
     const contentContainer = document.getElementById('content');
     const homeButton = document.getElementById('homeButton');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
 
     // 页面加载时默认加载 index.md
     loadFileContent('index.md');
@@ -46,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 侧边栏切换按钮点击事件
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        contentContainer.classList.toggle('expanded');
+    });
 
     /**
      * 递归构建文件目录的 HTML

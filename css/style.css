@@ -80,11 +80,54 @@ body {
     padding: 20px;
     overflow-y: auto;
     background-color: #f8f8f8;
+    transition: width 0.3s ease, min-width 0.3s ease;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Add some space below the header */
 }
 
 .sidebar h1 {
     margin-top: 0;
     font-size: 1.5em;
+}
+
+.sidebar-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle-button:hover {
+    color: #3498db;
+}
+
+.arrow {
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.arrow.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
 }
 
 .content {
@@ -93,6 +136,7 @@ body {
     overflow-y: auto;
     height: calc(100vh - 80px); /* Adjusted height to account for topbar */
     box-sizing: border-box; /* Include padding in height calculation */
+    transition: padding-left 0.3s ease;
 }
 
 #file-tree ul {
@@ -240,6 +284,30 @@ body {
 }
 
 /* Responsive adjustments */
+.sidebar.collapsed {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar.collapsed #file-tree,
+.sidebar.collapsed .sidebar h1 {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-toggle-button .arrow.left {
+    transform: rotate(-45deg); /* Arrow points right when collapsed */
+}
+
+.sidebar.collapsed .sidebar-toggle-button .arrow.right {
+    transform: rotate(135deg); /* Arrow points left when expanded */
+}
+
+.content.expanded {
+    padding-left: 20px; /* Adjust content padding when sidebar is collapsed */
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
