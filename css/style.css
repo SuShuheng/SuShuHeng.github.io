@@ -14,7 +14,7 @@ body {
     color: #ecf0f1; /* Light gray text */
     padding: 15px 40px;
     display: flex;
-    justify-content: flex-end; /* Align content to the right */
+    justify-content: space-between; /* Align content to the right */
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     position: sticky;
@@ -57,6 +57,19 @@ body {
     display: flex;
     flex-grow: 1; /* Allow container to take remaining height */
     width: 100%;
+}
+
+.home-button {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.home-button:hover {
+    color: #3498db;
 }
 
 .sidebar {
