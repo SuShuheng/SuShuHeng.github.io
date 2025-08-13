@@ -1,6 +1,48 @@
 [
   {
     "type": "folder",
+    "name": "Code Language",
+    "children": [
+      {
+        "type": "folder",
+        "name": "GO",
+        "children": [
+          {
+            "type": "file",
+            "name": "go_learning_phase1_basics.md",
+            "path": "Code Language/GO/go_learning_phase1_basics.md"
+          },
+          {
+            "type": "file",
+            "name": "go_learning_phase2_core_features.md",
+            "path": "Code Language/GO/go_learning_phase2_core_features.md"
+          },
+          {
+            "type": "file",
+            "name": "go_learning_phase3_concurrency.md",
+            "path": "Code Language/GO/go_learning_phase3_concurrency.md"
+          },
+          {
+            "type": "file",
+            "name": "go_learning_phase4_standard_library_tools.md",
+            "path": "Code Language/GO/go_learning_phase4_standard_library_tools.md"
+          },
+          {
+            "type": "file",
+            "name": "go_learning_phase5_practical_project.md",
+            "path": "Code Language/GO/go_learning_phase5_practical_project.md"
+          },
+          {
+            "type": "file",
+            "name": "go_learning_phase6_advanced_topics.md",
+            "path": "Code Language/GO/go_learning_phase6_advanced_topics.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "folder",
     "name": "ComfyUI",
     "children": [
       {
