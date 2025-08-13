@@ -215,7 +215,7 @@ sudo mkdir /var/lib/gdm3/.config
 sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/
 ```
 
- 	5.设置 GDM 用户的 monitors.xml 的正确权限：
+5.设置 GDM 用户的 monitors.xml 的正确权限：
 
 ```bash
 sudo chown -R gdm:gdm /var/lib/gdm3/.config/

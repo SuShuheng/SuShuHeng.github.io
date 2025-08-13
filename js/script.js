@@ -5,6 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
 
+    // 初始化 Marked.js 渲染器
+    const renderer = new marked.Renderer(); // 保持 renderer 定义，以便 marked.parse 使用
+
+    marked.setOptions({
+        renderer: renderer, // 确保 marked.js 使用自定义的渲染器
+        highlight: null, // 禁用 marked.js 内部高亮
+        langPrefix: '', // 禁用语言前缀
+        gfm: true, // 启用 GitHub Flavored Markdown
+        breaks: false, // 不支持 GitHub Flavored Markdown 换行符
+        pedantic: false, // 不启用 pedantic 选项
+        sanitize: false, // 禁用 HTML 过滤
+        smartLists: true, // 启用智能列表
+        smartypants: false // 禁用智能标点
+    });
+
     // 页面加载时默认加载 index.md
     loadFileContent('index.md');
 
@@ -118,7 +133,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.text();
             })
             .then(markdown => {
-                contentContainer.innerHTML = marked.parse(markdown);
+                contentContainer.innerHTML = marked.parse(markdown); // 让 marked.js 正常解析所有 Markdown
+
+                // 手动处理代码块，添加语言显示和复制按钮
+                document.querySelectorAll('pre code').forEach(block => {
+                    const parentPre = block.parentNode;
+                    const lang = block.className.split(' ').find(cls => cls.startsWith('language-'));
+                    const languageName = lang ? lang.replace('language-', '').toUpperCase() : 'PLAINTEXT';
+                    const codeContent = block.textContent;
+
+                    const codeContainer = document.createElement('div');
+                    codeContainer.className = 'code-block-container';
+
+                    const header = document.createElement('div');
+                    header.className = 'code-block-header';
+
+                    const langSpan = document.createElement('span');
+                    langSpan.className = 'code-language';
+                    langSpan.textContent = languageName;
+
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-code-button';
+                    copyButton.textContent = '复制';
+                    copyButton.dataset.code = encodeURIComponent(codeContent);
+
+                    header.appendChild(langSpan);
+                    header.appendChild(copyButton);
+                    codeContainer.appendChild(header);
+                    codeContainer.appendChild(parentPre.cloneNode(true)); // 复制原始的 pre 元素
+
+                    parentPre.replaceWith(codeContainer); // 替换原始的 pre 元素
+
+                    // 添加复制按钮事件监听器
+                    copyButton.addEventListener('click', () => {
+                        navigator.clipboard.writeText(codeContent).then(() => {
+                            copyButton.textContent = '已复制!';
+                            setTimeout(() => {
+                                copyButton.textContent = '复制';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('复制失败:', err);
+                        });
+                    });
+                });
+
+                // 确保 highlight.js 在所有代码块元素都存在于 DOM 中后运行
+                hljs.highlightAll();
             })
             .catch(error => {
                 console.error('无法加载文件内容:', error);
