@@ -138,8 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 手动处理代码块，添加语言显示和复制按钮
                 document.querySelectorAll('pre code').forEach(block => {
                     const parentPre = block.parentNode;
-                    const lang = block.className.split(' ').find(cls => cls.startsWith('language-'));
-                    const languageName = lang ? lang.replace('language-', '').toUpperCase() : 'PLAINTEXT';
+                    const langClass = block.className.split(' ').find(cls => cls.startsWith('language-'));
+                    let languageName = 'PLAINTEXT';
+                    let fileName = '';
+
+                    if (langClass) {
+                        const parts = langClass.replace('language-', '').split(':');
+                        languageName = parts[0] ? parts[0].toUpperCase() : 'PLAINTEXT';
+                        if (parts.length > 1) {
+                            fileName = parts.slice(1).join(':'); // Handle filenames with colons
+                        }
+                    }
                     const codeContent = block.textContent;
 
                     const codeContainer = document.createElement('div');
@@ -151,6 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const langSpan = document.createElement('span');
                     langSpan.className = 'code-language';
                     langSpan.textContent = languageName;
+
+                    const fileNameSpan = document.createElement('span');
+                    fileNameSpan.className = 'code-filename';
+                    fileNameSpan.textContent = fileName;
+                    if (fileName) {
+                        header.insertBefore(fileNameSpan, langSpan.nextSibling); // Insert after language, before copy button
+                    }
 
                     const copyButton = document.createElement('button');
                     copyButton.className = 'copy-code-button';
@@ -168,8 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     copyButton.addEventListener('click', () => {
                         navigator.clipboard.writeText(codeContent).then(() => {
                             copyButton.textContent = '已复制!';
+                            copyButton.classList.add('copied'); // Add copied class
                             setTimeout(() => {
                                 copyButton.textContent = '复制';
+                                copyButton.classList.remove('copied'); // Remove copied class
                             }, 2000);
                         }).catch(err => {
                             console.error('复制失败:', err);

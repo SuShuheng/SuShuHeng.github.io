@@ -278,6 +278,12 @@ body {
     font-weight: bold;
 }
 
+.code-filename {
+    font-size: 0.85em;
+    color: #b0b0b0; /* Lighter color for filename */
+    margin-left: 10px; /* Space between language and filename */
+}
+
 .copy-code-button {
     background-color: #555;
     color: #f8f8f2;
@@ -380,4 +386,28 @@ body {
         padding: 20px;
         height: calc(100vh - 100px - 40vh); /* Adjust height for header and dynamic sidebar */
     }
+}
+
+/* Code block line numbers */
+.code-block-container pre {
+    counter-reset: line;
+}
+
+.code-block-container code .line-number::before {
+    content: counter(line);
+    counter-increment: line;
+    display: inline-block;
+    width: 2em; /* Adjust as needed for number width */
+    margin-right: 1em;
+    text-align: right;
+    color: #888; /* Line number color */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.copy-code-button.copied {
+    background-color: #28a745; /* Green color for copied state */
+    transition: background-color 0.3s ease;
 }
