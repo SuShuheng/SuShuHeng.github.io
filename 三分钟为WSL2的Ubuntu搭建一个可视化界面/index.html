@@ -1,0 +1,644 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog -
+    SuShuHeng&#39;s Blog</title>
+<link rel="shortcut icon" href="https://sushuheng.github.io/favicon.ico" />
+<link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css">
+<link
+  href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/remixicon/2.2.0/remixicon.min.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://sushuheng.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://sushuheng.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog -
+    SuShuHeng&#39;s Blog - Atom Feed"
+  href="https://sushuheng.github.io/atom.xml" />
+
+
+
+
+  <script src="https://registry.npmmirror.com/twikoo/1.6.41/files/dist/twikoo.min.js"></script>
+
+
+    <meta name="description" content="几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！
+
+第一步：安装图形界面
+
+
+
+Distro
+Desktop Environment
+Metapackage
+
+
+
+
+Ubuntu
+Budg..." />
+    <meta
+      property="og:title"
+      content="三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog - SuShuHeng&#39;s Blog" />
+    <meta property="og:description" content="几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！
+
+第一步：安装图形界面
+
+
+
+Distro
+Desktop Environment
+Metapackage
+
+
+
+
+Ubuntu
+Budg..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://sushuheng.github.io/三分钟为WSL2的Ubuntu搭建一个可视化界面/" />
+    <meta
+      property="og:image"
+      content="https://sushuheng.github.io/post-images/三分钟为WSL2的Ubuntu搭建一个可视化界面.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog - SuShuHeng&#39;s Blog" />
+    <meta name="twitter:description" content="几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！
+
+第一步：安装图形界面
+
+
+
+Distro
+Desktop Environment
+Metapackage
+
+
+
+
+Ubuntu
+Budg..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://sushuheng.github.io/三分钟为WSL2的Ubuntu搭建一个可视化界面/" />
+
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://sushuheng.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://sushuheng.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        SuShuHeng&#39;s Blog
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog
+          </h1>
+          
+          <img
+            src="https://sushuheng.github.io/post-images/三分钟为WSL2的Ubuntu搭建一个可视化界面.png"
+            alt="三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng&#39;s Blog"
+            class="block w-full mb-8" />
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2025-08-20 · 6 min read
+            </div>
+            
+            <a
+              href="https://sushuheng.github.io/2nxY2q7XV1/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              WSL2
+            </a>
+            
+            <a
+              href="https://sushuheng.github.io/i05H7LRSjt/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Ubuntu
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><p>几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！</p>
+<!-- more -->
+<h2 id="第一步安装图形界面">第一步：安装图形界面</h2>
+<table>
+<thead>
+<tr>
+<th>Distro</th>
+<th>Desktop Environment</th>
+<th>Metapackage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>Budgie</td>
+<td><code>ubuntu-budgie-desktop</code> (非常不推荐使用)</td>
+</tr>
+<tr>
+<td>GNOME</td>
+<td><code>ubuntu-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>KDE</td>
+<td><code>kubuntu-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Kylin</td>
+<td><code>ubuntukylin-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>LXDE</td>
+<td><code>lubuntu-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>MATE</td>
+<td><code>ubuntu-mate-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Studio</td>
+<td><code>ubuntustudio-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity</td>
+<td><code>ubuntu-unity-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Xfce</td>
+<td><code>xubuntu-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Ubuntu/Debian</td>
+<td><code>Cinnamon</code></td>
+<td><code>task-cinnamon-desktop</code></td>
+</tr>
+<tr>
+<td>GNOME</td>
+<td><code>task-gnome-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>GNOME Flashback</td>
+<td><code>task-gnome-flashback-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>KDE Plasma</td>
+<td><code>task-kde-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>LXDE</td>
+<td><code>task-lxde-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>LXQt</td>
+<td><code>task-lxqt-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>MATE</td>
+<td><code>task-mate-desktop</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Xfce</td>
+<td><code>task-xfce-desktop</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="安装图形界面包">安装图形界面包</h3>
+<ol>
+<li>选择好元包后，开始安装。例如，如果你选择 <code>ubuntu-desktop</code>，命令如下：</li>
+</ol>
+<pre><code class="language-bash">sudo apt install ubuntu-desktop xwayland
+
+# 如果使用 Ubuntu，你可能想安装 snap-store。
+sudo snap install snap-store
+</code></pre>
+<h3 id="创建和修改服务">创建和修改服务</h3>
+<p>​	1.现在所有组件都已安装，我们需要修复 <code>/tmp/.X11-unix/</code> 目录，因为它默认是只读挂载的。我们将创建一个新的 systemd 单元：</p>
+<pre><code class="language-bash">sudo systemctl edit --full --force wslg-fix.service
+</code></pre>
+<p>​	2.在编辑器中粘贴以下代码：</p>
+<pre><code class="language-text">[Service]
+Type=oneshot
+ExecStart=-/usr/bin/umount /tmp/.X11-unix
+ExecStart=/usr/bin/rm -rf /tmp/.X11-unix
+ExecStart=/usr/bin/mkdir /tmp/.X11-unix
+ExecStart=/usr/bin/chmod 1777 /tmp/.X11-unix
+ExecStart=/usr/bin/ln -s /mnt/wslg/.X11-unix/X0 /tmp/.X11-unix/X0
+ExecStart=/usr/bin/chmod 0777 /mnt/wslg/runtime-dir
+ExecStart=/usr/bin/chmod 0666 /mnt/wslg/runtime-dir/wayland-0.lock
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>​	3.保存并退出编辑器。</p>
+<p>​	4.启用 <code>wslg-fix.service</code>：</p>
+<pre><code class="language-bash">sudo systemctl enable wslg-fix.service
+</code></pre>
+<p>​	5.我们还需要移除所有对 Wayland 的引用，否则某些应用程序（例如 <code>gnome-terminal</code>）可能在桌面环境外打开。编辑 <code>user-runtime-dir@.service</code> 服务：</p>
+<pre><code class="language-bash">sudo systemctl edit user-runtime-dir@.service
+</code></pre>
+<p>​	6.在编辑器中粘贴以下代码：</p>
+<pre><code class="language-bash">[Service]
+ExecStartPost=-/usr/bin/rm -f /run/user/%i/wayland-0 /run/user/%i/wayland-0.lock
+</code></pre>
+<p>​	7/保存并退出编辑器。</p>
+<p>​	8.现在更改默认启动目标，否则每次启动发行版时都会出现一个 shell 窗口（例如，在 Windows 中打开发行版的终端）：</p>
+<pre><code class="language-bash">sudo systemctl set-default multi-user.target
+</code></pre>
+<h3 id="用-xwayland-替换默认-xorg">用 XWayland 替换默认 Xorg</h3>
+<p>默认情况下，显示管理器为每个用户会话（包括登录界面）调用多个 <code>Xorg</code> 实例（如果你使用 GDM 作为显示管理器）。我们将用调用 <code>Xwayland</code> 的新脚本替换 <code>Xorg</code> 脚本。这是我们试图实现的核心魔法。</p>
+<ol>
+<li>首先，备份原始 <code>Xorg</code> 脚本：</li>
+</ol>
+<pre><code class="language-bash">sudo mv /usr/bin/Xorg /usr/bin/Xorg.original
+</code></pre>
+<p>​	2.创建新的 <code>Xorg</code> 脚本：</p>
+<pre><code class="language-bash">sudo nano /usr/bin/Xorg.Xwayland
+</code></pre>
+<p>​	3,在编辑器中粘贴以下代码：</p>
+<pre><code class="language-bash">#!/bin/bash
+for arg do
+  shift
+  case $arg in
+    # Xwayland 不支持 vtxx 参数，因此转换为 ttyxx
+    vt*)
+      set -- &quot;$@&quot; &quot;${arg//vt/tty}&quot;
+      ;;
+    # Xwayland 完全不支持 -keeptty
+    -keeptty)
+      ;;
+    # Xwayland 完全不支持 -novtswitch
+    -novtswitch)
+      ;;
+    # 其他参数保持不变
+    *)
+      set -- &quot;$@&quot; &quot;$arg&quot;
+      ;;
+  esac
+done
+
+# 检查运行时目录是否存在，如果不存在则创建
+if [ ! -d $HOME/runtime-dir ]
+then
+ mkdir $HOME/runtime-dir
+ ln -s /mnt/wslg/runtime-dir/wayland-0 /mnt/wslg/runtime-dir/wayland-0.lock $HOME/runtime-dir/
+fi
+
+# 将 XDG_RUNTIME_DIR 变量指向 $HOME/runtime-dir
+export XDG_RUNTIME_DIR=$HOME/runtime-dir
+
+# 查找可用的显示编号
+for displayNumber in $(seq 1 100)
+do
+  [ ! -e /tmp/.X11-unix/X$displayNumber ] &amp;&amp; break
+done
+
+# 在这里可以更改或添加选项以适应你的需求
+command=(&quot;/usr/bin/Xwayland&quot; &quot;:${displayNumber}&quot; &quot;-geometry&quot; &quot;1920x1080&quot; &quot;-fullscreen&quot; &quot;$@&quot;)
+
+systemd-cat -t /usr/bin/Xorg echo &quot;Starting Xwayland:&quot; &quot;${command[@]}&quot;
+
+exec &quot;${command[@]}&quot;
+</code></pre>
+<ol start="4">
+<li>保存并退出编辑器。</li>
+<li>设置文件的正确权限并创建链接：</li>
+</ol>
+<pre><code class="language-bash">sudo chmod 0755 /usr/bin/Xorg.Xwayland
+sudo ln -sf Xorg.Xwayland /usr/bin/Xorg
+</code></pre>
+<h3 id="配置-gdm-和-gnome-的显示器分辨率">配置 GDM 和 GNOME 的显示器分辨率</h3>
+<p>目前，Xwayland 的分辨率是一个烦人的问题。即使使用了 <code>-geometry</code> 开关，GDM 和 GNOME 也不会遵循它。幸运的是，可以通过创建 <code>monitors.xml</code> 文件来覆盖此设置。</p>
+<ol>
+<li>首先，在当前用户目录下创建文件：</li>
+</ol>
+<pre><code class="language-bash">mkdir ~/.config
+nano ~/.config/monitors.xml
+</code></pre>
+<p>​	2.在编辑器中粘贴以下代码（这里配置为 2560X1440 分辨率，如有需要请更改）：</p>
+<pre><code class="language-xml">&lt;monitors version=&quot;2&quot;&gt;
+  &lt;configuration&gt;
+    &lt;logicalmonitor&gt;
+      &lt;x&gt;0&lt;/x&gt;
+      &lt;y&gt;0&lt;/y&gt;
+      &lt;scale&gt;1&lt;/scale&gt;
+      &lt;primary&gt;yes&lt;/primary&gt;
+      &lt;monitor&gt;
+        &lt;monitorspec&gt;
+          &lt;connector&gt;XWAYLAND0&lt;/connector&gt;
+          &lt;vendor&gt;unknown&lt;/vendor&gt;
+          &lt;product&gt;unknown&lt;/product&gt;
+          &lt;serial&gt;unknown&lt;/serial&gt;
+        &lt;/monitorspec&gt;
+        &lt;mode&gt;
+          &lt;width&gt;2560&lt;/width&gt;
+          &lt;height&gt;1440&lt;/height&gt;
+          &lt;rate&gt;59.963&lt;/rate&gt;
+        &lt;/mode&gt;
+      &lt;/monitor&gt;
+    &lt;/logicalmonitor&gt;
+  &lt;/configuration&gt;
+&lt;/monitors&gt;
+</code></pre>
+<p>​	3.保存并退出编辑器。</p>
+<p>​	4.将此文件复制到 GDM 的主目录：</p>
+<pre><code class="language-bash">sudo mkdir /var/lib/gdm3/.config
+sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/
+</code></pre>
+<pre><code>5.设置 GDM 用户的 monitors.xml 的正确权限：
+</code></pre>
+<pre><code class="language-bash">sudo chown -R gdm:gdm /var/lib/gdm3/.config/
+</code></pre>
+<p>​	6.使用 <code>wsl.exe --shutdown</code> 重启 WSL，然后重新打开发行版终端.</p>
+<h2 id="第二步也是最后一步启动图形界面">第二步也是最后一步：启动图形界面</h2>
+<pre><code class="language-bash">sudo systemctl start graphical.target
+</code></pre>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+  <div class="comment-wrapper">
+    <div id="tcomment"></div>
+    <script>
+      twikoo.init({
+        envId: 'https://twikoo.blog.sushuheng.top',
+        el: '#tcomment'
+      })
+    </script>
+  </div>
+
+ 
+        <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  <a href="https://github.com/SuShuHeng/OpenItem">点击获取博客资料</a>
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">第一步：安装图形界面</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%8C%85">安装图形界面包</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BF%AE%E6%94%B9%E6%9C%8D%E5%8A%A1">创建和修改服务</a></li>
+<li><a href="#%E7%94%A8-xwayland-%E6%9B%BF%E6%8D%A2%E9%BB%98%E8%AE%A4-xorg">用 XWayland 替换默认 Xorg</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE-gdm-%E5%92%8C-gnome-%E7%9A%84%E6%98%BE%E7%A4%BA%E5%99%A8%E5%88%86%E8%BE%A8%E7%8E%87">配置 GDM 和 GNOME 的显示器分辨率</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E4%B9%9F%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E6%AD%A5%E5%90%AF%E5%8A%A8%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">第二步也是最后一步：启动图形界面</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/vue/2.7.16/vue.min.js"></script>
+    <script src="https://sushuheng.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://sushuheng.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+  </body>
+</html>

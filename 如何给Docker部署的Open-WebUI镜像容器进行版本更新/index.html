@@ -1,0 +1,610 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>如何给Docker部署的Open-WebUI镜像容器进行版本更新 -
+    SuShuHeng&#39;s Blog</title>
+<link rel="shortcut icon" href="https://sushuheng.github.io/favicon.ico" />
+<link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css">
+<link
+  href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/remixicon/2.2.0/remixicon.min.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://sushuheng.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://sushuheng.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="如何给Docker部署的Open-WebUI镜像容器进行版本更新 -
+    SuShuHeng&#39;s Blog - Atom Feed"
+  href="https://sushuheng.github.io/atom.xml" />
+
+
+
+
+  <script src="https://registry.npmmirror.com/twikoo/1.6.41/files/dist/twikoo.min.js"></script>
+
+
+    <meta name="description" content="部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。
+
+
+1. 引言
+Open-WebUI是一个强大且用户友好的开源Web界面，用于与大型..." />
+    <meta
+      property="og:title"
+      content="如何给Docker部署的Open-WebUI镜像容器进行版本更新 - SuShuHeng&#39;s Blog" />
+    <meta property="og:description" content="部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。
+
+
+1. 引言
+Open-WebUI是一个强大且用户友好的开源Web界面，用于与大型..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://sushuheng.github.io/如何给Docker部署的Open-WebUI镜像容器进行版本更新/" />
+    <meta
+      property="og:image"
+      content="https://sushuheng.github.io/post-images/如何给Docker部署的Open-WebUI镜像容器进行版本更新.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="如何给Docker部署的Open-WebUI镜像容器进行版本更新 - SuShuHeng&#39;s Blog" />
+    <meta name="twitter:description" content="部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。
+
+
+1. 引言
+Open-WebUI是一个强大且用户友好的开源Web界面，用于与大型..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://sushuheng.github.io/如何给Docker部署的Open-WebUI镜像容器进行版本更新/" />
+
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://sushuheng.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://sushuheng.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        SuShuHeng&#39;s Blog
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            如何给Docker部署的Open-WebUI镜像容器进行版本更新
+          </h1>
+          
+          <img
+            src="https://sushuheng.github.io/post-images/如何给Docker部署的Open-WebUI镜像容器进行版本更新.png"
+            alt="如何给Docker部署的Open-WebUI镜像容器进行版本更新"
+            class="block w-full mb-8" />
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2025-08-23 · 12 min read
+            </div>
+            
+            <a
+              href="https://sushuheng.github.io/J4qUsDwc6y/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Docker
+            </a>
+            
+            <a
+              href="https://sushuheng.github.io/9DSAqTHaKi/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Open WebUI
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><p>部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。</p>
+<!-- more -->
+<hr>
+<h2 id="1-引言">1. 引言</h2>
+<p>Open-WebUI是一个强大且用户友好的开源Web界面，用于与大型语言模型（LLMs）进行交互。它支持多种模型后端，如Ollama、OpenAI API等，并提供了丰富的功能，如会话管理、模型切换、自定义提示等。随着LLM技术和Open-WebUI项目本身的快速发展，定期更新您的Open-WebUI容器至最新版本变得至关重要。</p>
+<p>版本更新不仅能带来新功能、性能优化和用户体验改进，更重要的是，它能修复潜在的安全漏洞和bug。本文将详细指导您如何安全、高效地更新Docker部署的Open-WebUI镜像容器，无论是通过<code>docker run</code>命令部署还是使用<code>docker-compose</code>。</p>
+<h2 id="2-更新前准备">2. 更新前准备</h2>
+<p>在进行任何更新操作之前，请确保您满足以下先决条件并做好充分准备：</p>
+<h3 id="21-了解您的部署方式">2.1. 了解您的部署方式</h3>
+<p>您最初是如何部署Open-WebUI的？这通常有两种主要方式：</p>
+<ul>
+<li><strong>使用<code>docker run</code>命令直接部署：</strong> 这种方式通常涉及一个较长的命令行，包含各种参数（端口映射、卷挂载、环境变量等）。</li>
+<li><strong>使用<code>docker-compose</code>文件部署：</strong> 这种方式通过一个<code>docker-compose.yml</code>文件来定义服务、网络和卷，然后使用<code>docker-compose up -d</code>命令启动。</li>
+</ul>
+<p>您需要知道您的部署方式，因为更新步骤会略有不同。</p>
+<h3 id="22-具备必要的环境和权限">2.2. 具备必要的环境和权限</h3>
+<ul>
+<li><strong>SSH访问权限：</strong> 能够通过SSH连接到您的Docker宿主机。</li>
+<li><strong>Docker和Docker Compose：</strong> 确保您的宿主机上已安装Docker和Docker Compose（如果使用Compose部署）。</li>
+<li><strong>基本Linux命令行知识：</strong> 熟悉文件系统导航、复制、删除等基本命令。</li>
+<li><strong><code>sudo</code>权限：</strong> 可能需要<code>sudo</code>来执行某些Docker命令。</li>
+</ul>
+<h3 id="23-备份您的数据强烈推荐">2.3. 备份您的数据（强烈推荐）</h3>
+<p>Open-WebUI将用户数据（如会话历史、模型配置、用户设置等）存储在持久化卷中。在更新之前，<strong>务必备份这些数据</strong>，以防万一。</p>
+<p>如果您使用了<strong>绑定挂载（bind mount）</strong>，例如：<code>-v /path/to/your/open-webui/data:/app/backend/data</code>，那么您的数据就直接存储在宿主机的<code>/path/to/your/open-webui/data</code>目录下。您可以通过以下命令备份：</p>
+<pre><code class="language-bash"># 假设您的数据目录是 /opt/open-webui/data
+# 进入数据目录的父目录
+cd /opt/open-webui/
+
+# 备份整个数据目录
+sudo cp -r data data_backup_$(date +%F)
+</code></pre>
+<p>如果您使用了<strong>命名卷（named volume）</strong>，例如：<code>-v open-webui_data:/app/backend/data</code>，数据则存储在Docker管理的卷中。您可以通过以下命令来备份命名卷：</p>
+<pre><code class="language-bash"># 停止Open-WebUI容器，确保数据一致性
+# docker stop open-webui 
+
+# 创建一个临时容器来复制数据
+# 假设您的命名卷名为 open-webui_data
+docker run --rm -v open-webui_data:/data -v $(pwd):/backup alpine sh -c &quot;tar -czvf /backup/open-webui_data_backup_$(date +%F).tar.gz -C /data .&quot;
+</code></pre>
+<p>请根据您的实际情况选择备份方式。</p>
+<h3 id="24-查看open-webui的release-notes">2.4. 查看Open-WebUI的Release Notes</h3>
+<p>在更新之前，建议访问Open-WebUI的GitHub Releases页面，查看最新版本的发布说明（Release Notes）。这可以帮助您了解新功能、潜在的重大更改或任何需要额外注意的迁移步骤。</p>
+<ul>
+<li><strong>Open-WebUI GitHub Releases:</strong> <a href="https://github.com/open-webui/open-webui/releases">https://github.com/open-webui/open-webui/releases</a></li>
+</ul>
+<h2 id="3-更新步骤通用流程">3. 更新步骤（通用流程）</h2>
+<p>无论您是使用<code>docker run</code>还是<code>docker-compose</code>部署，核心的更新逻辑都是相似的：<strong>停止旧容器 -&gt; 移除旧容器 -&gt; 拉取新镜像 -&gt; 使用相同的配置（尤其是数据卷）启动新容器。</strong></p>
+<h3 id="31-连接到您的docker宿主机">3.1. 连接到您的Docker宿主机</h3>
+<p>首先，使用SSH连接到您的服务器：</p>
+<pre><code class="language-bash">ssh your_username@your_server_ip
+</code></pre>
+<h3 id="32-停止当前运行的open-webui容器">3.2. 停止当前运行的Open-WebUI容器</h3>
+<h4 id="321-对于docker-run部署的用户">3.2.1. 对于<code>docker run</code>部署的用户</h4>
+<p>首先，您需要找到Open-WebUI容器的名称或ID。通常，如果您没有指定，Docker会自动分配一个名称。如果您在<code>docker run</code>命令中使用了<code>--name open-webui</code>，那么容器名称就是<code>open-webui</code>。</p>
+<pre><code class="language-bash"># 列出所有正在运行的容器
+docker ps
+
+# 如果您还想看到已停止的容器
+docker ps -a
+
+# 查找Open-WebUI容器的名称或ID，例如：
+# CONTAINER ID   IMAGE                     COMMAND        CREATED        STATUS        PORTS                    NAMES
+# a1b2c3d4e5f6   open-webui/open-webui:latest &quot;/usr/src/app/entryp...&quot; 2 days ago   Up 2 days     0.0.0.0:3000-&gt;8080/tcp   open-webui
+
+# 停止容器
+docker stop open-webui # 将 'open-webui' 替换为你的容器名称或ID
+</code></pre>
+<h4 id="322-对于docker-compose部署的用户">3.2.2. 对于<code>docker-compose</code>部署的用户</h4>
+<p>导航到您的<code>docker-compose.yml</code>文件所在的目录，然后停止服务：</p>
+<pre><code class="language-bash">cd /path/to/your/open-webui-docker-compose-directory # 替换为您的实际路径
+docker-compose down
+</code></pre>
+<p><code>docker-compose down</code>命令会停止并移除由<code>docker-compose.yml</code>文件定义的所有服务容器和默认网络。</p>
+<h3 id="33-移除旧的open-webui容器如果未使用docker-compose-down">3.3. 移除旧的Open-WebUI容器（如果未使用<code>docker-compose down</code>）</h3>
+<p>如果您是<code>docker run</code>用户，在停止容器后，为了确保后续能使用相同的名称启动新容器，您需要移除旧的容器。</p>
+<pre><code class="language-bash">docker rm open-webui # 将 'open-webui' 替换为你的容器名称或ID
+</code></pre>
+<h3 id="34-移除旧的open-webui镜像可选但推荐清理">3.4. 移除旧的Open-WebUI镜像（可选，但推荐清理）</h3>
+<p>为了确保拉取到最新镜像，并且清理旧镜像占用的磁盘空间，您可以移除旧的Open-WebUI镜像。</p>
+<pre><code class="language-bash"># 查看所有镜像，找到 Open-WebUI 的镜像ID或名称
+docker images | grep open-webui
+
+# 移除旧镜像
+# 注意：如果同一镜像有多个标签，或者其他容器还在使用此镜像，可能无法移除
+docker rmi open-webui/open-webui:latest # 替换为实际的镜像名称和标签
+</code></pre>
+<p>如果出现错误提示镜像正在被使用，请忽略此步骤，因为下一步拉取新镜像时，Docker会智能处理。</p>
+<h3 id="35-拉取最新的open-webui镜像">3.5. 拉取最新的Open-WebUI镜像</h3>
+<p>这是获取新版本核心步骤。Docker将从Docker Hub拉取最新版本的Open-WebUI镜像。</p>
+<pre><code class="language-bash">docker pull open-webui/open-webui:latest
+</code></pre>
+<p>如果您想拉取特定版本（例如<code>1.2.3</code>），可以将<code>latest</code>替换为对应的版本标签：</p>
+<pre><code class="language-bash">docker pull open-webui/open-webui:1.2.3
+</code></pre>
+<h3 id="36-重新创建并启动open-webui容器">3.6. 重新创建并启动Open-WebUI容器</h3>
+<p>现在，您将使用新拉取的镜像，以及您之前定义的所有配置（端口映射、数据卷、环境变量等）来启动Open-WebUI容器。</p>
+<h4 id="361-对于docker-run部署的用户">3.6.1. 对于<code>docker run</code>部署的用户</h4>
+<p>使用您最初部署时使用的<strong>完整<code>docker run</code>命令</strong>来启动新容器。请确保<strong>数据卷挂载路径与之前完全一致</strong>，这样新容器才能访问到您原有的数据。</p>
+<p><strong>示例（请替换为您的实际命令）：</strong></p>
+<pre><code class="language-bash">docker run -d \
+  --name open-webui \
+  -p 3000:8080 \
+  -v /path/to/your/open-webui/data:/app/backend/data \
+  --restart always \
+  open-webui/open-webui:latest
+</code></pre>
+<p><strong>重要提示：</strong> 请务必使用您自己的<code>-v</code>参数和<code>/path/to/your/open-webui/data</code>。如果您的原始命令中有其他环境变量（<code>-e</code>）、网络模式（<code>--network</code>）或其他参数，请务必全部包含进来。</p>
+<h4 id="362-对于docker-compose部署的用户">3.6.2. 对于<code>docker-compose</code>部署的用户</h4>
+<p>导航到您的<code>docker-compose.yml</code>文件所在的目录，然后运行：</p>
+<pre><code class="language-bash">cd /path/to/your/open-webui-docker-compose-directory # 替换为您的实际路径
+docker-compose up -d
+</code></pre>
+<p><code>docker-compose up -d</code>命令会使用最新拉取的镜像重新创建并启动服务，并且会保留您的数据卷。如果<code>docker-compose.yml</code>文件没有变化，它会使用新的镜像启动一个新的容器实例，并挂载现有的数据卷。</p>
+<p>如果您在<code>docker-compose.yml</code>中使用了特定版本的镜像标签，例如<code>image: open-webui/open-webui:1.2.0</code>，并且想要更新到<code>latest</code>或另一个特定版本，您需要先编辑<code>docker-compose.yml</code>文件，将<code>image</code>行的标签更新为<code>latest</code>或您想要的新版本，然后再执行<code>docker-compose pull</code>和<code>docker-compose up -d</code>。</p>
+<p><strong>示例 <code>docker-compose.yml</code> 修改：</strong></p>
+<pre><code class="language-yaml"># ... (其他配置)
+services:
+  open-webui:
+    image: open-webui/open-webui:latest # 将这里的标签更新为你想要的版本
+    ports:
+      - &quot;3000:8080&quot;
+    volumes:
+      - ./data:/app/backend/data # 确保数据卷路径正确
+    # ... (其他配置)
+</code></pre>
+<p>修改并保存<code>docker-compose.yml</code>后，执行：</p>
+<pre><code class="language-bash">docker-compose pull # 确保拉取到新的镜像
+docker-compose up -d --force-recreate # 强制重新创建容器，使用新镜像
+</code></pre>
+<h2 id="4-验证更新">4. 验证更新</h2>
+<p>容器启动后，您需要验证Open-WebUI是否已成功更新并正常运行。</p>
+<h3 id="41-检查容器状态">4.1. 检查容器状态</h3>
+<pre><code class="language-bash">docker ps | grep open-webui
+</code></pre>
+<p>确保容器状态为<code>Up</code>，并且端口映射正确。</p>
+<h3 id="42-检查容器日志">4.2. 检查容器日志</h3>
+<p>查看Open-WebUI容器的日志，确保没有启动错误：</p>
+<pre><code class="language-bash">docker logs open-webui # 将 'open-webui' 替换为你的容器名称
+</code></pre>
+<h3 id="43-访问web界面">4.3. 访问Web界面</h3>
+<p>在您的浏览器中访问Open-WebUI的URL（例如：<code>http://your_server_ip:3000</code>）。</p>
+<ul>
+<li>确认界面可以正常加载。</li>
+<li>尝试登录（如果已设置用户）。</li>
+<li>检查您的会话历史和模型配置是否完整。</li>
+<li>通常，Open-WebUI的设置页面或关于页面会显示当前版本号，您可以核对是否与您期望的最新版本一致。</li>
+</ul>
+<h2 id="5-常见问题及故障排除">5. 常见问题及故障排除</h2>
+<ul>
+<li>
+<p><strong><code>Error response from daemon: conflict: container name &quot;open-webui&quot; is already in use.</code></strong></p>
+<ul>
+<li><strong>原因：</strong> 您可能忘记了移除旧的容器。</li>
+<li><strong>解决方案：</strong> 执行 <code>docker rm open-webui</code> 来移除旧容器（如果它已经停止）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Port 3000 is already allocated.</code></strong></p>
+<ul>
+<li><strong>原因：</strong> 宿主机上的3000端口正在被其他进程占用，或者旧容器没有完全停止/移除。</li>
+<li><strong>解决方案：</strong>
+<ol>
+<li>确保旧的Open-WebUI容器已停止并移除。</li>
+<li>检查是否有其他服务占用了该端口：<code>sudo netstat -tulpn | grep 3000</code>，然后停止占用该端口的进程。</li>
+<li>更改Open-WebUI的映射端口，例如：<code>-p 3001:8080</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>数据丢失或会话历史不见了。</strong></p>
+<ul>
+<li><strong>原因：</strong> 最常见的原因是新容器没有正确挂载到包含旧数据的卷上，或者挂载了错误的路径。</li>
+<li><strong>解决方案：</strong>
+<ol>
+<li>立即停止新容器，以免覆盖数据。</li>
+<li>仔细检查您在<code>docker run</code>命令或<code>docker-compose.yml</code>文件中指定的卷挂载路径，确保它与您备份或之前使用的路径完全一致。</li>
+<li>如果有备份，可以尝试恢复备份数据到正确的卷路径。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>容器启动后立即退出。</strong></p>
+<ul>
+<li><strong>原因：</strong> 可能是配置错误、权限问题、依赖缺失或镜像损坏。</li>
+<li><strong>解决方案：</strong>
+<ol>
+<li>查看容器日志：<code>docker logs open-webui</code>，通常会有详细的错误信息。</li>
+<li>检查数据卷的权限，确保Docker用户可以写入。</li>
+<li>尝试重新拉取镜像：<code>docker pull --no-cache open-webui/open-webui:latest</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>docker-compose</code>命令找不到。</strong></p>
+<ul>
+<li><strong>原因：</strong> <code>docker-compose</code>可能没有正确安装，或者不在您的PATH环境变量中。</li>
+<li><strong>解决方案：</strong> 确保您安装了Docker Compose。在较新的Docker版本中，<code>docker compose</code>（没有连字符）是推荐的命令形式。</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-最佳实践">6. 最佳实践</h2>
+<ul>
+<li><strong>使用特定版本标签：</strong> 尽管本文使用了<code>latest</code>标签，但在生产环境中，更推荐使用具体的版本号（例如<code>open-webui/open-webui:1.2.3</code>）来部署，这样可以避免不兼容的更新，并允许您在测试后手动升级。</li>
+<li><strong>定期备份：</strong> 养成定期备份Open-WebUI数据的好习惯，尤其是在进行重大更新前。</li>
+<li><strong>测试更新：</strong> 如果条件允许，在一个非生产环境（测试环境）中先行测试更新，确保一切正常后再应用于生产环境。</li>
+<li><strong>阅读CHANGELOG：</strong> 在更新前花时间阅读项目的<code>CHANGELOG</code>或<code>Release Notes</code>，了解可能影响您部署的任何重大更改或新配置。</li>
+<li><strong>清理旧镜像：</strong> 定期使用<code>docker image prune</code>或手动<code>docker rmi</code>来清理不再使用的旧镜像，以释放磁盘空间。</li>
+</ul>
+<h2 id="7-结论">7. 结论</h2>
+<p>通过本文的详细步骤，您应该能够安全、顺利地为您的Docker部署Open-WebUI容器进行版本更新。记住，数据备份是任何更新操作中最重要的步骤。保持Open-WebUI的最新版本，能够让您持续享受到其带来的最新功能、性能优势和安全保障。祝您更新顺利！</p>
+<hr>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+  <div class="comment-wrapper">
+    <div id="tcomment"></div>
+    <script>
+      twikoo.init({
+        envId: 'https://twikoo.blog.sushuheng.top',
+        el: '#tcomment'
+      })
+    </script>
+  </div>
+
+ 
+        <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  <a href="https://github.com/SuShuHeng/OpenItem">点击获取博客资料</a>
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%BC%95%E8%A8%80">1. 引言</a></li>
+<li><a href="#2-%E6%9B%B4%E6%96%B0%E5%89%8D%E5%87%86%E5%A4%87">2. 更新前准备</a>
+<ul>
+<li><a href="#21-%E4%BA%86%E8%A7%A3%E6%82%A8%E7%9A%84%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F">2.1. 了解您的部署方式</a></li>
+<li><a href="#22-%E5%85%B7%E5%A4%87%E5%BF%85%E8%A6%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%92%8C%E6%9D%83%E9%99%90">2.2. 具备必要的环境和权限</a></li>
+<li><a href="#23-%E5%A4%87%E4%BB%BD%E6%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90">2.3. 备份您的数据（强烈推荐）</a></li>
+<li><a href="#24-%E6%9F%A5%E7%9C%8Bopen-webui%E7%9A%84release-notes">2.4. 查看Open-WebUI的Release Notes</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%9B%B4%E6%96%B0%E6%AD%A5%E9%AA%A4%E9%80%9A%E7%94%A8%E6%B5%81%E7%A8%8B">3. 更新步骤（通用流程）</a>
+<ul>
+<li><a href="#31-%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%82%A8%E7%9A%84docker%E5%AE%BF%E4%B8%BB%E6%9C%BA">3.1. 连接到您的Docker宿主机</a></li>
+<li><a href="#32-%E5%81%9C%E6%AD%A2%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84open-webui%E5%AE%B9%E5%99%A8">3.2. 停止当前运行的Open-WebUI容器</a>
+<ul>
+<li><a href="#321-%E5%AF%B9%E4%BA%8Edocker-run%E9%83%A8%E7%BD%B2%E7%9A%84%E7%94%A8%E6%88%B7">3.2.1. 对于<code>docker run</code>部署的用户</a></li>
+<li><a href="#322-%E5%AF%B9%E4%BA%8Edocker-compose%E9%83%A8%E7%BD%B2%E7%9A%84%E7%94%A8%E6%88%B7">3.2.2. 对于<code>docker-compose</code>部署的用户</a></li>
+</ul>
+</li>
+<li><a href="#33-%E7%A7%BB%E9%99%A4%E6%97%A7%E7%9A%84open-webui%E5%AE%B9%E5%99%A8%E5%A6%82%E6%9E%9C%E6%9C%AA%E4%BD%BF%E7%94%A8docker-compose-down">3.3. 移除旧的Open-WebUI容器（如果未使用<code>docker-compose down</code>）</a></li>
+<li><a href="#34-%E7%A7%BB%E9%99%A4%E6%97%A7%E7%9A%84open-webui%E9%95%9C%E5%83%8F%E5%8F%AF%E9%80%89%E4%BD%86%E6%8E%A8%E8%8D%90%E6%B8%85%E7%90%86">3.4. 移除旧的Open-WebUI镜像（可选，但推荐清理）</a></li>
+<li><a href="#35-%E6%8B%89%E5%8F%96%E6%9C%80%E6%96%B0%E7%9A%84open-webui%E9%95%9C%E5%83%8F">3.5. 拉取最新的Open-WebUI镜像</a></li>
+<li><a href="#36-%E9%87%8D%E6%96%B0%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8open-webui%E5%AE%B9%E5%99%A8">3.6. 重新创建并启动Open-WebUI容器</a>
+<ul>
+<li><a href="#361-%E5%AF%B9%E4%BA%8Edocker-run%E9%83%A8%E7%BD%B2%E7%9A%84%E7%94%A8%E6%88%B7">3.6.1. 对于<code>docker run</code>部署的用户</a></li>
+<li><a href="#362-%E5%AF%B9%E4%BA%8Edocker-compose%E9%83%A8%E7%BD%B2%E7%9A%84%E7%94%A8%E6%88%B7">3.6.2. 对于<code>docker-compose</code>部署的用户</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-%E9%AA%8C%E8%AF%81%E6%9B%B4%E6%96%B0">4. 验证更新</a>
+<ul>
+<li><a href="#41-%E6%A3%80%E6%9F%A5%E5%AE%B9%E5%99%A8%E7%8A%B6%E6%80%81">4.1. 检查容器状态</a></li>
+<li><a href="#42-%E6%A3%80%E6%9F%A5%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97">4.2. 检查容器日志</a></li>
+<li><a href="#43-%E8%AE%BF%E9%97%AEweb%E7%95%8C%E9%9D%A2">4.3. 访问Web界面</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4">5. 常见问题及故障排除</a></li>
+<li><a href="#6-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">6. 最佳实践</a></li>
+<li><a href="#7-%E7%BB%93%E8%AE%BA">7. 结论</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/vue/2.7.16/vue.min.js"></script>
+    <script src="https://sushuheng.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://sushuheng.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+  </body>
+</html>

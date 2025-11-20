@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://sushuheng.github.io</id>
+    <title>SuShuHeng&apos;s Blog</title>
+    <updated>2025-11-20T06:23:41.091Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://sushuheng.github.io"/>
+    <link rel="self" href="https://sushuheng.github.io/atom.xml"/>
+    <subtitle>厚积方能薄发</subtitle>
+    <logo>https://sushuheng.github.io/images/avatar.png</logo>
+    <icon>https://sushuheng.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, SuShuHeng&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Java环境配置：前端Vue后端SpringBoot数据库MySQL]]></title>
+        <id>https://sushuheng.github.io/java-huan-jing-pei-zhi-qian-duan-vue-hou-duan-springboot-shu-ju-ku-mysql/</id>
+        <link href="https://sushuheng.github.io/java-huan-jing-pei-zhi-qian-duan-vue-hou-duan-springboot-shu-ju-ku-mysql/">
+        </link>
+        <updated>2025-10-22T23:45:12.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何给Docker部署的Open-WebUI镜像容器进行版本更新]]></title>
+        <id>https://sushuheng.github.io/如何给Docker部署的Open-WebUI镜像容器进行版本更新/</id>
+        <link href="https://sushuheng.github.io/如何给Docker部署的Open-WebUI镜像容器进行版本更新/">
+        </link>
+        <updated>2025-08-23T05:46:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>部署了Open-WebUI之后，新版本更新了许多有趣的功能，难免让人心里痒痒想试试，以Open-WebUI接下来告诉你如何为Docker镜像容器进行更新。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[三分钟为WSL2的Ubuntu搭建一个可视化界面 ——SuShuHeng's Blog]]></title>
+        <id>https://sushuheng.github.io/三分钟为WSL2的Ubuntu搭建一个可视化界面/</id>
+        <link href="https://sushuheng.github.io/三分钟为WSL2的Ubuntu搭建一个可视化界面/">
+        </link>
+        <updated>2025-08-20T03:48:53.000Z</updated>
+        <summary type="html"><![CDATA[<p>几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>几步简单操作即可为你的WSL2的Ubuntu搭建可视化界面，实现Windows，Linux随心切换！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用WSL2搭建支持CUDA的深度学习环境]]></title>
+        <id>https://sushuheng.github.io/WSL2-Ubuntu-Anaconda-Cuda-PyTorch-TensorFlow/</id>
+        <link href="https://sushuheng.github.io/WSL2-Ubuntu-Anaconda-Cuda-PyTorch-TensorFlow/">
+        </link>
+        <updated>2025-08-19T08:42:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>WSL2已经支持直接调用Nvidia显卡的CUDA，今天我们来尝试搭建一个可以使用CUDA的WSL2子系统，使用的Linux发行版本是Ubuntu24.04LTS，并使用Anaconda搭建一个深度学习环境（包含PyTorch、TensorFlow等）</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>WSL2已经支持直接调用Nvidia显卡的CUDA，今天我们来尝试搭建一个可以使用CUDA的WSL2子系统，使用的Linux发行版本是Ubuntu24.04LTS，并使用Anaconda搭建一个深度学习环境（包含PyTorch、TensorFlow等）</p>
+]]></content>
+    </entry>
+</feed>
